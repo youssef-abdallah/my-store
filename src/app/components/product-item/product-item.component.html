@@ -1,8 +1,8 @@
 <div class="product-container">
-    <img class="product-image" src="{{ imageUrl }}"/>
+    <img class="product-image" src="{{ product.url }}"/>
     <ul>
-        <li>{{ name }}</li>
-        <li>${{ price }}</li>
+        <li>{{ product.name }}</li>
+        <li>${{ product.price }}</li>
         <select class="select-input">amount</select>
         <button>Add to cart</button>
     </ul>
