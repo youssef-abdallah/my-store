@@ -11,6 +11,7 @@ import { Product } from 'src/app/models/product.model';
 export class ProductListComponent implements OnInit {
 
   productList: Product[] = [];
+
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {

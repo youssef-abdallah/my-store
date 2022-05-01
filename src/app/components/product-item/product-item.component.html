@@ -3,7 +3,14 @@
     <ul>
         <li>{{ product.name }}</li>
         <li>${{ product.price }}</li>
-        <select class="select-input">amount</select>
-        <button>Add to cart</button>
+        <select class="select-input" [(ngModel)]="selectedQuantity">
+            <option *ngFor="let quantity of quantityOptions" [ngValue]="quantity">{{ quantity }}</option>
+        </select>
+        <br>
+        <button
+        class="btn-primary"
+        (click)="addItemToCart(product, selectedQuantity)">
+            Add to cart
+        </button>
     </ul>
 </div>
