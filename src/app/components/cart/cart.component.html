@@ -1,1 +1,25 @@
-<p>cart works!</p>
+<div class="cart-container">
+    <div *ngIf="cartItemList.length; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <div class="cart-panel">
+        <div class="cart-item" *ngFor="let item of cartItemList">
+            <img class="img" src="{{ item.url }}">
+            <div class="cart-item-details">
+                <p>{{ item.name }}</p>
+                <p>${{ item.price }}</p>
+                <p>Amout:
+                    <input type="number" class="number-input"
+                     min="0" max="10" [(ngModel)]="item.quantity"
+                     (ngModelChange)="quantityChanged(item)">
+                </p>
+            </div>
+        </div>
+        <strong>Total cost: ${{ totalCost }}</strong>
+    </div>
+</ng-template>
+<ng-template #elseBlock>
+    <div class="empty-cart-message">
+        <p>No item is added to your cart!</p>
+    </div>
+</ng-template>
+</div>
