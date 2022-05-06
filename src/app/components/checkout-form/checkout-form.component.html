@@ -1,0 +1,54 @@
+<form (ngSubmit)="submitConfirmationForm()">
+    <p>
+    <label>Full Name</label>
+    <br>
+    <input type="text" name="fullname" placeholder="(minimum 3 characters)"
+        [(ngModel)]="fullName" required minlength="3" #fullNameRef="ngModel">
+    </p>
+    <div *ngIf="fullNameRef.invalid && fullNameRef.dirty">
+        <div *ngIf="fullNameRef.errors?.['required']">
+            Please provide your full name.
+        </div>
+        <div *ngIf="fullNameRef.errors?.['minlength']">
+            The full name must contain at least 3 characters.
+        </div>
+    </div>
+
+    <p>
+    <label>Address</label>
+    <br>
+    <input name="address" type="text" placeholder="(minimum 6 characters)" [(ngModel)]="address"
+        required minlength="6" #addressRef="ngModel">
+    </p>
+    <div *ngIf="addressRef.invalid && addressRef.dirty">
+        <div *ngIf="addressRef.errors?.['required']">
+            Please provide your address.
+        </div>
+        <div *ngIf="addressRef.errors?.['minlength']">
+            The address must contain at least 6 characters.
+        </div>
+    </div>
+    
+
+    <p>
+    <label>Credit Card Number</label>
+    <br>
+    <input name="creditCardNumber" type="text" placeholder="(16-digit number)"
+        [(ngModel)]="creditCardNumber" required minlength="16" maxlength="16"
+        pattern="[0-9]{16}" #creditCardRef="ngModel">
+    </p>
+    <div *ngIf="creditCardRef.invalid && creditCardRef.dirty">
+        <div *ngIf="creditCardRef.errors?.['required']">
+            Please provide your credit card number.
+        </div>
+        <div *ngIf="creditCardRef.errors?.['pattern']">
+            The credit card number consists of 16 digits.
+        </div>
+    </div>
+
+    <p>
+        <span>We will never share your payment details with anyone else.</span>
+        <br>
+        <button type="submit" class="btn-primary">Submit</button>
+    </p>
+</form>
