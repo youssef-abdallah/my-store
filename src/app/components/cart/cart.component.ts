@@ -21,9 +21,12 @@ export class CartComponent implements OnInit {
   }
 
   quantityChanged(cartItem: CartItem): void {
-    this.cartItemList = cartItem.quantity === 0
-      ? this.cartService.removeItem(cartItem)
-      : this.cartService.addOrUpdateCartItem(cartItem);
+    if (cartItem.quantity === 0) {
+      this.cartItemList = this.cartService.removeItem(cartItem)
+      alert(`Item ${cartItem.name} has been removed from cart.`);
+    }
+    else
+      this.cartService.addOrUpdateCartItem(cartItem);
     this.totalCost = this.cartService.getTotalCost();
   }
 }
