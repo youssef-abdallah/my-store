@@ -1,4 +1,4 @@
-<form (ngSubmit)="submitConfirmationForm()">
+<form #form="ngForm" (ngSubmit)="submitConfirmationForm()">
     <p>
     <label>Full Name</label>
     <br>
@@ -49,6 +49,6 @@
     <p>
         <span>We will never share your payment details with anyone else.</span>
         <br>
-        <button type="submit" class="btn-primary">Submit</button>
+        <button [disabled]="form.invalid" type="submit" class="btn-primary">Submit</button>
     </p>
 </form>

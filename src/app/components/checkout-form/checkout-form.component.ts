@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { CartService } from 'src/app/cart.service';
 
 @Component({
   selector: 'app-checkout-form',
@@ -11,12 +14,16 @@ export class CheckoutFormComponent implements OnInit {
   address: string = '';
   creditCardNumber: string = '';
 
-  constructor() { }
+  constructor(private router: Router,
+              private cartService: CartService){ }
 
   ngOnInit(): void {
   }
 
   submitConfirmationForm(): void {
-    
+    this.router.navigate
+      (['confirmation',
+       { 'fullName': this.fullName,
+         'totalCost': this.cartService.getTotalCost() }]);
   }
 }

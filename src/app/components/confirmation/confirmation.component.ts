@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirmation',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmationComponent implements OnInit {
 
-  constructor() { }
+  fullName: string = '';
+  totalCost: number = 0;
+
+  constructor(private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      let fullName = params.get('fullName');
+      let totalCost =  params.get('totalCost');
+
+      this.fullName = fullName ? fullName : this.fullName;
+      this.totalCost = totalCost ? +totalCost : this.totalCost;
+    });
   }
 
+  navigateToProducts(): void {
+    this.router.navigate(['products']);
+  }
 }
